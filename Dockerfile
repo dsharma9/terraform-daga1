@@ -1,7 +1,7 @@
-# syntax=docker/dockerfile:1
-FROM node:12-alpine
-RUN apk add --no-cache python2 g++ make
-WORKDIR /app
-COPY . .
-RUN yarn install --production
-CMD ["node", "src/index.js"]
+FROM centos:7
+RUN yum install -y   zip  unzip    httpd
+ADD https://www.free-css.com/assets/files/free-css-templates/download/page272/evolve.zip  /var/www/html/
+WORKDIR /var/www/html/
+RUN unzip evolve.zip
+EXPOSE 80
+CMD ["/usr/sbin/httpd", "-D", "FOREGROUND"]
